@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <style>
+        body{
+            /*width:1920px;*/
+            /*height:1376px;*/
+            /*background-color: #000;*/
+            width:1440px;
+            height:1024px;
+        }
+        .outer{
+            /*margin-top:352px;*/
+            /*margin-right:240px;*/
+            /*margin-left:240px;*/
+            position: relative;
+            width:1440px;
+            height:1024px;
+            background: #fff;
+        }
+        /*--------------header--------------*/
+        .header{
+            position: relative;
+            width:1440px;
+            height:358px;
+            background: url("images/bg_center.png") -248px 0;
+            text-align: center;
+        }
+        .header .nav{
+            position: relative;
+            width:1440px;
+            height:60px;
+            line-height:60px;
+            background: #7F4A88;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+        }
+        .header .nav .left{
+            width:300px;
+            height:33px;
+        }
+        .header .nav .left .title,.header .nav .left .logo{
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .left .logo{
+            margin-right:33px;
+        }
+        .header .nav .left .line{
+            position: absolute;
+            top:19px;
+            left:135px;
+            width:2px;
+            height:24px;
+            background-color: #fff;
+        }
+        .header .nav .right{
+            float: right;
+            margin-top:-35px;
+        }
+        .header .nav .right .photo{
+            margin-right:8px;
+            display: inline-block;
+            width:36px;
+            height:36px;
+            vertical-align: middle;
+            background: url("images/cherry_circle.png") no-repeat right center;
+            cursor: pointer;
+        }
+        .header .nav .right .select,.header .nav .right .write{
+            display: inline-block;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .right .select{
+            margin-right:35.5px;
+            padding-right:20px;
+            width:35.5px;
+            background: url("images/icon_arrow_down.png") no-repeat 42px 24px;
+            cursor: pointer;
+        }
+        .header .nav .select .drop{
+            position: absolute;
+            top:55px;
+            z-index: 111;
+            display: none;
+            right:141.7px;
+            width:109px;
+            height:124.7px;
+            background: #FFFFFF;
+            border: 1px solid #F2EEF3;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
+            line-height:42px;
+        }
+        .header .nav .select .drop a{
+            padding-right:10px;
+            padding-left:18px;
+            display: inline-block;
+            width:92px;
+            height:42px;
+            line-height:42px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        /*.header .nav .select .drop a:hover{*/
+        /*z-index: 11;*/
+        /*background-color: #c2cce3;*/
+        /*}*/
+        .header .nav .select .drop .user{
+            background: url("images/icon_user.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .setting{
+            background: url("images/icon_setting.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .exit{
+            background: url("images/icon_exit.png") no-repeat 10px 12px;
+        }
+        .drop li:first-child:before {
+            content: " ";
+            font-size: 0;
+            line-height: 0;
+            margin: 0 15px -10px auto;
+            display: block;/*独占一行*/
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); /*一个正方形倾斜四十五度就是三角但是要把下半部分藏起来*/
+            position: relative;
+            top: -5px; /*露出上半部分*/
+            z-index: -1; /*隐藏下半部分*/
+        }
+        .header .nav .right a{
+            margin-right:39px;
+            display: inline-block;
+            width:76px;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .right .write{
+            padding-left:26px;
+            display: inline-block;
+            width:50px;
+            background: url("images/icon_write.png") no-repeat 0 21px;
+            cursor: pointer;
+        }
+        .header .info{
+            width:1440px;
+            height:298px;
+            overflow: hidden;
+        }
+        .header .info .userPhoto{
+            display: block;
+            width:91px;
+            height:91px;
+            margin:69px auto;
+        }
+        .header .info .girl{
+            position: absolute;
+            bottom:134px;
+            right:672px;
+            width:30px;
+            height:30px;
+        }
+        .header .info .message{
+            width:118px;
+            height:100px;
+            margin:-46px auto 0;
+        }
+        .header .info .message .name,.header .info .message .details{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .info .message .name{
+            margin-bottom:7px;
+            font-size: 18px;
+        }
+        /*-----------------content----------------*/
+        .content{
+            margin-top:27px;
+        }
+        .content .article{
+            width:998px;
+            height:28px;
+            margin:0 auto;
+            border-bottom:1px solid rgba(127,74,136,0.5);
+            position: relative;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #222629;
+            letter-spacing: 0;
+            overflow: hidden;
+        }
+        .content section{
+            position: relative;
+            width:998px;
+            height:241px;
+            margin:17px auto 0;
+        }
+        .content section img{
+            width:396px;
+            height:241px;
+        }
+        .content section div{
+            position: absolute;
+            right:0;
+            top:0;
+            width:601px;
+            height:239px;
+            background: #FFFFFF;
+            border: 1px solid #F0E9F1;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
+            border-radius: 2px;
+        }
+        .content section div h2,.content section div h2 a,.content section div p{
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content section div h2{
+            margin-top:35px;
+            margin-left:36px;
+            width:271px;/*原始值width:260px;*/
+            font-weight:100;
+        }
+        .content section div p{
+            line-height: 24px;
+            margin-top:14px;
+            margin-left: 36px;
+            margin-right:39px;
+            text-indent:2em;
+            width:528px;
+        }
+        .content section div .name,.content section div .time{
+            float: left;
+        }
+        .content section div .name{
+            margin-left:38px;
+            padding-left:47px;
+            padding-right:31px;
+            width:32px;
+            height:36px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            letter-spacing: 0;
+        }
+        .content section div .name a{
+            display: inline-block;
+            width:32px;/*原始值*width:30px;*/
+            height:20px;
+            color: #222629;
+        }
+        .content section div .one{
+            background: url("images/lv_circle.png") no-repeat 0 12px;
+        }
+        .content section div .two{
+            background: url("images/nana_circle.png") no-repeat 0 12px;
+        }
+        .content section div .name,.content section div .time,.content section div .like,.content section div .read{
+            padding-top:20px;
+        }
+        .content section div .time,.content section div .like,.content section div .read,.content section div .like a{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(34,38,41,0.7);
+            letter-spacing: 0;
+        }
+        .content section div .like,.content section div .read{
+            float: right;
+        }
+        .content section div .read{
+            margin-right:39px;
+            margin-left:66px;
+            padding-left:31px;
+            background: url("images/icon_saw.png") no-repeat 0 25px;
+        }
+        .content section div span.clicked a{
+            background: url("images/icon_thumb_up_like.png") no-repeat left center;
+            color:#7F4A88;
+        }
+        .content section div .like{
+            padding-left:24px;
+            width:31px;
+            height:17px;
+        }
+        .content section div .like a{
+            padding-left:24px;
+            display: inline-block;
+            width:20px;/*原始值width=17px*/
+            height:17px;
+            background: url("images/icon_thumb_up.png")no-repeat left center;
+
+        }
+        /*---------------footer---------------*/
+        .footer {
+            position: absolute;
+            bottom:0;
+            width:1440px;
+            height:67px;
+            border-top:1px solid #7F4A88;
+        }
+        .footer .info{
+            margin:25px auto ;
+            width:514px;/*原始值width:488px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="header">
+        <div class="nav">
+            <div class="left">
+                <div class="logo">APIS</div>
+                <div class="title">悦读项目</div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="photo"></div>
+                <div class="select">
+                    <span>吕璐</span>
+                    <div id="drop" class="drop">
+                        <ul>
+                            <li>
+                                <a href="personal.html" class="user">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="setting.html" class="setting">账户设置</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="exit">退出登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="writeArticle.html"><div class="write">写文章</div></a>
+            </div>
+        </div>
+        <div class="info">
+            <img src="images/cherry_circle_big.png" alt="头像" class="userPhoto">
+            <img src="images/icon_girl.png" class="girl">
+            <div class="message">
+                <p class="name">吕璐</p>
+                <p class="details">西安市 &nbsp&nbsp 双鱼座</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="article">文章(10)</div>
+        <section>
+            <img src="images/AI.png" alt="AI+大数据">
+            <div>
+                <h2><a href="articlePage.html">雾霾太重，AI和大数据怎样参与抗霾？</a></h2>
+                <p> 12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>
+                <span class="name one"><a href="personal-secondSide.html">吕璐</a></span>
+                <span class="time">09:22</span>
+                <span class="read">2432</span>
+                <span class="like"><a href="javascript:;">53</a></span>
+            </div>
+        </section>
+        <section>
+            <img src="images/application.png" alt="应用号">
+            <div>
+                <h2><a href="articlePage.html">首设“虚拟站点”，滴滴小巴正式上线</a></h2>
+                <p> 12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>
+                <span class="name two"><a href="personal-secondSide.html">吕璐</a></span>
+                <span class="time">09:22</span>
+                <span class="read">2432</span>
+                <span class="like"><a href="javascript:;">53</a></span>
+            </div>
+        </section>
+    </div>
+    <div class="footer">
+        <div class="info">Copyright © 2017 apis.sh All Rights Reserved | 陕ICP备15013925号-3</div>
+    </div>
+</div>
+<script src="./javascripts/jquery-1.11.3.min.js"></script>
+<script src="./javascripts/utils.js"></script>
+<script>
+    //下拉菜单悬停
+    var $personal=$(".right .photo,.right .select"),
+        $drop=$(".drop"),
+        $select=$(".select");
+    utils.hover($personal,$drop,$select);
+
+//    var $like=$(".like");
+//    console.log($like)
+//    console.log($like[1])
+//    function bindEvent() {
+//        //获取本地存储的信息，判断是否有赞
+//        var support=localStorage.getItem('support');
+//        if(support){
+//            support=JSON.parse(support);
+//            if(support.isTap){
+//                $like.attr('isTap',true);
+//                $like.addClass('clicked');
+//            }
+//        }
+//
+//        $(".like").on("click",function(){
+//            if($(this).attr('isTap')==='true')return;
+//            //结果发送至服务器
+////                $.ajax({
+////                    url:'http://matchweb.sports.qq.com/kbs/teamSupport?mid=100000%3A1470751&type='+$like.attr('type'),//改参数
+////                    dataType:'jsonp'
+////                });
+//            //只能点击一次
+//            $(this).attr('isTap',true);
+//            $(this).html(parseFloat($(this).html())+1).addClass('bg');
+//            localStorage.setItem('support',JSON.stringify({'isTap':true}));//改参数
+//        })
+//    }
+//    bindEvent()
+</script>
+</body>
+</html>

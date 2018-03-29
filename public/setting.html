@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <style>
+        body{
+            /*width:100%;*/
+            /*height:100%;*/
+            /*background: #000;*/
+            width:1440px;
+            height:1024px;
+        }
+        .outer{
+            position: relative;
+            width:1440px;
+            height:1024px;
+            background: #fff;
+        }
+        /*--------------header--------------*/
+        .header{
+            width:1440px;
+            height:60px;
+            text-align: center;
+        }
+        .header .nav{
+            position: relative;
+            width:1440px;
+            height:60px;
+            line-height:60px;
+            background: #7F4A88;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+        }
+        .header .nav .left{
+            width:300px;
+            height:33px;
+        }
+        .header .nav .left .title,.header .nav .left .logo{
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .left .logo{
+            margin-right:33px;
+        }
+        .header .nav .left .line{
+            position: absolute;
+            top:19px;
+            left:135px;
+            width:2px;
+            height:24px;
+            background-color: #fff;
+        }
+        .header .nav .right{
+            float: right;
+            margin-top:-35px;
+        }
+        .header .nav .right .photo{
+            margin-right:8px;
+            display: inline-block;
+            width:36px;
+            height:36px;
+            vertical-align: middle;
+            background: url("images/cherry.png") no-repeat right center;
+            cursor: pointer;
+        }
+        .header .nav .right .select,.header .nav .right .write{
+            display: inline-block;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .right .select{
+            margin-right:35.5px;
+            padding-right:20px;
+            width:35.5px;
+            background: url("images/icon_arrow_down.png") no-repeat 42px 24px;
+            cursor: pointer;
+        }
+        .header .nav .select .drop{
+            position: absolute;
+            top:55px;
+            z-index: 111;
+            display: none;
+            right:141.7px;
+            width:109px;
+            height:124.7px;
+            background: #FFFFFF;
+            border: 1px solid #F2EEF3;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
+            line-height:42px;
+        }
+        .header .nav .select .drop a{
+            padding-right:10px;
+            padding-left:18px;
+            display: inline-block;
+            width:92px;
+            height:42px;
+            line-height:42px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        /*.header .nav .select .drop a:hover{*/
+        /*z-index: 11;*/
+        /*background-color: #c2cce3;*/
+        /*}*/
+        .header .nav .select .drop .user{
+            background: url("images/icon_user.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .setting{
+            background: url("images/icon_setting.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .exit{
+            background: url("images/icon_exit.png") no-repeat 10px 12px;
+        }
+        .drop li:first-child:before {
+            content: " ";
+            font-size: 0;
+            line-height: 0;
+            margin: 0 15px -10px auto;
+            display: block;/*独占一行*/
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); /*一个正方形倾斜四十五度就是三角但是要把下半部分藏起来*/
+            position: relative;
+            top: -5px; /*露出上半部分*/
+            z-index: -1; /*隐藏下半部分*/
+        }
+
+        .header .nav .right a{
+            margin-right:39px;
+            display: inline-block;
+            width:76px;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .right .write{
+             padding-left:26px;
+             display: inline-block;
+             width:50px;
+             background: url("images/icon_write.png") no-repeat 0 21px;
+             cursor: pointer;
+         }
+        /*.nav .right{*/
+            /*float: right;*/
+            /*margin-top:-60px;*/
+        /*}*/
+        /*.nav .right .login,.nav .right .register,.nav .right .write{*/
+            /*display: inline-block;*/
+            /*height:50px;*/
+            /*font-family: PingFangSC-Regular;*/
+            /*font-size: 16px;*/
+            /*color: #FFFFFF;*/
+            /*letter-spacing: 0;*/
+        /*}*/
+        /*.nav .right .login{*/
+            /*margin-right:25px;*/
+        /*}*/
+        /*.nav .right .register{*/
+            /*margin-right:55px;*/
+        /*}*/
+        /*.nav .right .write{*/
+            /*margin-right:39px;*/
+            /*padding-left:26px;*/
+            /*width:50px;*/
+            /*background: url("image/icon_write.png") no-repeat 0 21px;*/
+        /*}*/
+        /*-------------page-----------*/
+        .page{
+            margin-top:-60px;
+            width:1440px;
+            height:964px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .page .title{
+            margin:64px auto 0;/*safari的margin-top为119px*/
+            width:671px;
+            height:37px;
+            border-bottom:1px solid rgba(127,74,136,0.7);
+        }
+        .page .title p{
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .page form{
+            position: relative;
+            width:671px;
+            height:480px;
+            margin:27px auto;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            background: #FFFFFF;
+            border: 1px solid #F2EEF3;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.05);
+        }
+        .page form>div{
+            position: relative;
+            margin-left:63px;
+            margin-top:39px;
+            width:541px;
+            height:440px;
+        }
+        .page form p:first-child{
+            display: inline-block;
+        }
+        .page form .category{
+            margin-top:10px;
+            margin-right:17px;
+            display: inline-block;
+            float: left;
+            vertical-align: middle;
+            width:48px;
+            /*原始值width:45px;*/
+            height:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .page .layer{
+            position: relative;
+            margin-bottom:18px;
+            display: inline-block;
+            width:50px;
+            height:50px;
+            color: rgba(0,0,0,0.35);
+        }
+        .page .shadow:after{
+            position: absolute;
+            top: 0;
+            left:0;/*若不设置，chrome无影响，safari位置有偏移*/
+            z-index: 1;
+            width: 50px;
+            height:50px;
+            background-color: rgba(0,0,0,1); /*原始值background-color: rgba(0,0,0,0.35);*/
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            content: "";
+            opacity: 0.2;
+        }
+        .page form img{
+            z-index: -11;
+            width:50px;
+            height:50px;
+            vertical-align: middle;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .page form .layer .uploadPhoto{
+            position: absolute;
+            bottom:18px;
+            left:-6px;
+            /*safari中改变width后top和left值也要修改*/
+            z-index:11;
+            width:64.8px; /*原始值width:40.8px;*/
+            height:20px;/*原始值height:14px;*/
+            font-family: PingFangSC-Regular;
+            font-size: 10px;
+            color: #fff;
+            letter-spacing: 0;
+        }
+        .page form .layer .uploadPhoto ,.safari_only{
+            bottom:14px;
+            left:5px;
+        }
+        .page form .layer .file{
+            position: absolute;
+            bottom:0;
+            left:0;
+            z-index: 12121212;
+            width:50px;
+            height:50px;
+            opacity:0;
+            cursor: pointer;
+        }
+        .page form input:not(.sex):not(.file),.page form select,.page form .constellations,.page form #province,.page form #city{
+            display: inline-block;
+            width:220px;
+            height:36px;
+            border: 1px solid rgba(34,38,41,0.2);
+            border-radius: 4px;
+        }
+        .page form #nickname,.page form #password{
+            padding-left:10px;
+            width:210px;
+        }
+        .page form #nickname{
+            margin-top:2px;
+            margin-bottom:19.5px;
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .page form input.sex{
+            margin-top:12px;
+            margin-bottom:28px;
+            width:16px;
+            height:16px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #1F2D3D;
+            letter-spacing: 0;
+        }
+        .page form .sexText{
+            margin-right:30px;
+            display: inline-block;
+            cursor: default;
+        }
+        .page form select{
+            margin-bottom:21px;
+            padding-left:10px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+            background: url("images/icon_arrow_down 2.png") no-repeat scroll 196px 18px;/*safari最后值为16px*/
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+        }
+        .page form #sexColor{
+            position: absolute;
+            top:139px;
+            left:136px;/*safari值不同*/
+            z-index: 12;
+            width:16px;
+            height:16px;
+            background: url("images/icon_choose.png");
+            pointer-events: none;
+        }
+        .page form #sexColor,.safari_only{
+            left:128px;
+        }
+        .page form #sexColor .left,.safari_only{
+            left:128px;
+        }
+        .page form #sexWithoutColor .left,.safari_only{
+            left:128px;
+        }
+        .page form #sexWithoutColor{
+            position: absolute;
+            top:139px;
+            left:64px;/*safari值不同*/
+            z-index: 12;
+            width:16px;
+            height:16px;
+            background: url("images/icon_unchoose.png");
+            pointer-events: none;
+        }
+        /*.page form #sexWithoutColor,.safari_only{*/
+            /*left:56px;*/
+        /*}*/
+        .page form #sexWithoutColor .right,.safari_only{
+            left:56px;
+        }
+        .page form #sexColor .right,.safari_only{
+            left:56px;
+        }
+        .page form #constellations,.page form #province,.page form #city {
+            margin-bottom:21px;
+            background: url("images/icon_arrow_down 2.png") no-repeat scroll 196px 18px;/*safari最后值为16px*/
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+        }
+        .page form #province {
+            margin-right:27px;
+        }
+        .page form #constellations ul,.page form #province ul,.page form #city ul{
+            position: absolute;
+            top:222px;
+            left:65px;
+            width:220px;
+            height:278px;
+            z-index:11;
+            background: #FFFFFF;
+            border: 1px solid #D3DCE6;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
+            border-radius: 2px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .page form #constellations ul{
+            top:222px;
+            left:65px;
+            display: none;
+
+        }
+        .page form #province ul{
+            top:282px;
+            left:65px;
+            display: none;
+
+        }
+        .page form #city ul{
+            top:282px;
+            left:318px;
+            display: none;
+
+        }
+        .page form #constellations ul::-webkit-scrollbar,
+        .page form #province ul::-webkit-scrollbar,
+        .page form #city ul::-webkit-scrollbar{/*滚动条整体样式*/
+            width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+            height: 4px;
+        }
+        .page form #constellations ul::-webkit-scrollbar-thumb,
+        .page form #province ul::-webkit-scrollbar-thumb,
+        .page form #city ul::-webkit-scrollbar-thumb{/*滚动条里面小方块*/
+            border-radius: 5px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.2);
+        }
+        .page form #constellations ul li,.page form #province ul li,.page form #city ul li{
+            padding-top:11px;
+            padding-left:10px;
+            display: inline-block;
+            width:210px;
+            height:25px;
+            font-family:PingFangSC-Regular;
+            font-size: 14px;
+            color: #475669;
+            letter-spacing: 0;
+            line-height: 14px;
+            border-top:1px solid rgba(211,220,230,0.6);
+            box-shadow: inset 1px 0 0 0 #D3DCE6, inset -1px 0 0 0 #D3DCE6;
+            cursor: pointer;
+        }
+        .page form #constellations ul li:first-child,
+        .page form #province ul li:first-child,
+        .page form #city ul li:first-child{
+            border:none;
+        }
+        .page form #constellations span,.page form #province span,.page form #city span{
+            margin-top:11px;
+            margin-left:10px;
+            display: inline-block;
+            font-family:PingFangSC-Regular;
+            font-size: 14px;
+            color: #475669;
+            letter-spacing: 0;
+            line-height: 14px;
+            cursor: default;
+        }
+        .page form button{
+            position: absolute;
+            bottom: 30px;
+            left:170px;
+            width:200px;
+            height:40px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #fff;
+            background-color: #7F4A88;
+            border: 1px solid rgba(34,38,41,0.2);
+            border-radius: 4px;
+        }
+        /*---------------footer---------------*/
+        .footer {
+            position: absolute;
+            bottom:0;
+            width:1440px;
+            height:47px;
+            border-top:1px solid #7F4A88;
+            text-align: center;
+            padding-top:22px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="header">
+        <div class="nav">
+            <div class="left">
+                <div class="logo">APIS</div>
+                <div class="title">悦读项目</div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="photo"></div>
+                <div class="select">
+                    <span>吕璐</span>
+                    <div id="drop" class="drop">
+                        <ul>
+                            <li>
+                                <a href="personal.html" class="user">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="setting.html" class="setting">账户设置</a>
+                            </li>
+                            <li>
+                                <a href="login.html" class="exit">退出登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="writeArticle.html"><div class="write">写文章</div></a>
+            </div>
+        </div>
+    </div>
+    <!--<div class="nav">-->
+        <!--<div class="left">-->
+            <!--<div class="logo">APIS</div>-->
+            <!--<div class="title">悦读项目</div>-->
+            <!--<div class="line"></div>-->
+        <!--</div>-->
+        <!--<div class="right">-->
+            <!--<p class="login">登录</p>-->
+            <!--<p class="register">注册</p>-->
+            <!--<p class="write">写文章</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="page">
+        <div class="title">
+            <p>账户设置</p>
+        </div>
+        <form>
+            <div>
+                <div>
+                    <span class="category">头像：</span>
+                    <div class="layer shadow">
+                        <img class="avatar" id="avatar" src="images/cherry_circle_middle.png">
+                        <span class="uploadPhoto" id="uploadPhoto">上传头像</span>
+                        <input class="file" type="file" name="file" id="file">
+                    </div>
+                </div>
+                <div>
+                    <label for="nickname"><span class="category">昵称：</span></label>
+                    <input id="nickname" type="text" value="吕璐璐璐">
+                </div>
+                <div>
+                    <span class="category">性别：</span>
+                    <input class="sex man" type="radio" name="sex" value="man">
+                    <span class="sex man sexText" >男</span>
+                    <input class="sex woman" type="radio" name="sex" value="woman" checked>
+                    <span class="sex woman sexText" >女</span>
+                    <div id="sexColor"></div>
+                    <div id="sexWithoutColor"></div>
+                </div>
+                <div>
+                    <span class="category" id="constellationsTitle">星座：</span>
+                    <div class="constellations" id="constellations" name="constellation">
+                        <span>白羊座</span>
+                        <ul id="constellationsUl">
+                            <li class="zodiac" value="Aries">白羊座</li>
+                            <li class="zodiac" value="Taurus">金牛座</li>
+                            <li class="zodiac" value="Gemini">双子座</li>
+                            <li class="zodiac" value="Cancer">巨蟹座</li>
+                            <li class="zodiac" value="Leo">狮子座</li>
+                            <li class="zodiac" value="Virgo">处女座</li>
+                            <li class="zodiac" value="Libra">天枰座</li>
+                            <li class="zodiac" value="Scorpio">天蝎座</li>
+                            <li class="zodiac" value="Sagittarius">射手座</li>
+                            <li class="zodiac" value="Capricorn">摩羯座</li>
+                            <li class="zodiac" value="Aquarius">水瓶座</li>
+                            <li class="zodiac" value="Aquarius">双鱼座</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <span class="category">城市：</span>
+                    <div id="province">
+                        <span>吉林</span>
+                        <ul id="provinceUl">
+                            <!--<li id="1" value="shanxi">陕西省</li>-->
+                            <!--<li id="2" value="jiangsu">江苏省</li>-->
+                        </ul>
+                    </div>
+                    <div id="city">
+                        <span>长春</span>
+                        <ul id="cityUl">
+                            <!--<li value="shanxi">长春市</li>-->
+                            <!--<li value="shanxi">吉林市</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <label for="password"><span class="category">密码：</span></label>
+                    <input id="password" type="password">
+                </div>
+                <button id="save" type="button">保&nbsp&nbsp&nbsp&nbsp存</button>
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <div class="info">Copyright © 2017 apis.sh All Rights Reserved | 陕ICP备15013925号-3</div>
+    </div>
+</div>
+<script charset="UTF-8" src="./javascripts/jquery-1.11.3.min.js"></script>
+<script charset="UTF-8" src="./javascripts/utils.js"></script>
+<script charset="UTF-8" src="./javascripts/ejs.min.js"></script>
+<script charset="UTF-8" src="javascripts/convertPinyin.js"></script>
+<script charset="UTF-8" type="text/template" id="provinceTemplate">
+    <%$.each(matchData,function(index,item){%>
+    <li><%=item.province%></li>
+    <%})%>
+</script>
+<script charset="UTF-8" type="text/template" id="cityTemplate">
+    <%$.each(matchData,function(index,item){%>
+    <li><%=item.city%></li>
+    <%})%>
+</script>
+<script>
+    var $personal=$(".right .photo,.right .select"),
+        $drop=$(".drop"),
+        $select=$(".select"),
+        $constellations=$("#constellations"),
+        $constellationsUl=$("#constellationsUl"),
+        $province=$("#province"),
+        $provinceUl=$("#provinceUl"),
+        $cityUl=$("#cityUl"),
+        $city=$("#city"),
+        $body=$("body"),
+        $span=$("#constellations span"),
+        $span2=$("#province span"),
+        $span3=$("#city span"),
+        $sexColor=$("#sexColor"),
+        $sexWithoutColor=$("#sexWithoutColor"),
+        $sex=$(".sex"),
+        $save=$("#save"),
+        count=0,
+        $file=$("#file"),
+        $uploadPhoto=$("#uploadPhoto"),
+        $layer=$(".layer"),
+        $avatar=$("#avatar");
+
+    //绑定ejs数据
+    //省
+    (function () {
+        function bindHTML(data) {
+            var template=$("#provinceTemplate").html();
+            var result=ejs.render(template,{matchData:data});
+            $("#provinceUl").html(result);
+        }
+        $.ajax({
+            url:"./province.json",
+            type:"get",
+            dataType:"json",
+            cache:false,
+            success:bindHTML
+        });
+    })();
+    //市
+    ~function () {
+        function bindHTML(data) {
+            var template=$("#cityTemplate").html();
+            var result=ejs.render(template,{matchData:data});
+            $("#cityUl").html(result);
+        }
+        $.ajax({
+            url:"./json/jilin.json",
+            type:"get",
+            dataType:"json",
+            cache:false,
+            success:bindHTML
+        });
+    }();
+
+    //下拉菜单悬停
+    utils.hover($personal,$drop,$select);
+    
+    //退出登录
+    $(".exit").on("click",function () {
+        localStorage.removeItem("userData");
+//        window.location.href="login.html";
+    });
+
+    //上传头像
+    $file.on("change",function () {
+       uploadFile()
+    });
+    function uploadFile(){
+        var file = document.getElementById("file");
+        var formData = new FormData();
+        formData.append('file',file.files[0]);
+        $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: formData,
+            // async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                if(200 === data.code) {
+                    console.log(data);
+                    $avatar.attr('src','http://localhost:8080/'+data.data);//改变属性，不是改样式
+                    $uploadPhoto.css("display","none");
+                    $layer.removeClass("shadow")
+                } else {
+                    alert("上传失败！");
+                }
+            }
+        });
+    }
+
+    //星座和省份的列表显示
+    $body.on("click",function (e) {
+        utils.mouseEvent();
+
+        var flag=$constellationsUl.css("display")!=="none";
+        if(!flag && (e.target===$constellations[0] || e.target===$span[0])){
+            $constellationsUl.css("display","block");
+        }
+        if(flag || (flag && e.target!==$constellations[0])){
+            $constellationsUl.css("display","none");
+        }
+
+        var flag2=$provinceUl.css("display")!=="none";
+        if(!flag2 && (e.target===$province[0] || e.target===$span2[0])){
+            $provinceUl.css("display","block");
+        }
+        if(flag2 || (flag2 && e.target!==$province[0])){
+            $provinceUl.css("display","none");
+        }
+
+        var flag3=$cityUl.css("display")!=="none";
+        if(!flag3 && (e.target===$city[0] || e.target===$span3[0])){
+            $cityUl.css("display","block");
+        }
+        if(flag3 || (flag3 && e.target!==$city[0])){
+            $cityUl.css("display","none");
+        }
+
+        //如未点击省时发送的请求
+        if(count===0  && e.target!==$provinceUl[0]){//弊端：发送次数过多
+            $.ajax({
+                url:"/city/province?Pro=",
+                success:function (msg) {
+                    if (msg && msg.code === "SUCCESS") {
+                        console.log(msg);
+                    } else {
+                        alert(msg.message);
+                    }
+                }
+            })
+        }
+    });
+
+    //点击星座选相框中显示对应星座
+    $constellationsUl.on("click",function (e) {
+        utils.mouseEvent();
+        $span[0]["textContent"]=e.target.innerHTML;
+        //发送星座数据
+        $.ajax({//为什么不发送用户选项？？
+            url:"https://dev.apis.sh/PW7yo9FpO/constellations/query",
+//            url: "/constellations/query",
+            xhrFields:{withCredentials: true},
+            jsonp:"callback",
+            success:function (msg) {
+                console.log(msg)
+            }
+        })
+    });
+
+    //点击省份显示相应省份及调取不同城市列表
+    $provinceUl.on("click",function (e) {
+        var province=null;
+        utils.mouseEvent();
+        $span2[0]["textContent"]=e.target.innerHTML;
+        province=PinYin.toConvert($span2[0]["textContent"]);
+        if(province==="shanxi"){
+            province=$span2[0]["textContent"]==="山西"?"shanxiNorth":"shanxi";
+        }
+        province==="xicang"?province="xizang":null;
+        //调取不同城市列表
+        function bindHTML(data) {
+            var template=$("#cityTemplate").html();
+            var result=ejs.render(template,{matchData:data});
+            $("#cityUl").html(result);
+            $span3[0]["textContent"]=data[0]["city"]
+        }
+        $.ajax({
+            url:"./json\/"+province+".json",
+            dataType:"json",
+            cache:false,
+            success:bindHTML
+        });
+        //发送省（省级）（获取省）
+        $.ajax({
+//            url:"/city/province?Pro="+province,
+            url:"https://dev.apis.sh/PW7yo9FpO/city/province?ProID=4",
+            xhrFields:{withCredentials: true},
+            jsonp:"callback",
+            type:"get",
+            success:function (msg) {
+                if (msg && msg.code === "SUCCESS") {
+                    console.log(msg["data"]["province"]);
+                    count++;
+                    console.log(count)
+                } else {
+                    alert(msg.message);
+                }
+            }
+        });
+        //发送省（市级）(获取所有市）
+        $.ajax({
+//            url:"/city/city?Pro="+province,
+            url:"https://dev.apis.sh/PW7yo9FpO/city/city?ProID=&CityID=65",
+            xhrFields:{withCredentials: true},
+            jsonp:"callback",
+            type:"get",
+            success:function (msg) {
+                if (msg && msg.code==="SUCCESS") {//文档上写的是status=200
+                    console.log(msg);
+                    console.log(msg["data"]["city"]);
+                    count++;
+                    console.log(count)
+                } else {
+                    alert(msg.message);
+                }
+            }
+        });
+    });
+//    $save.on("click",function () {//如未点击省时发送的请求（点击保存时获取版）
+//        alert(2)
+//
+//        if(count===0){
+//            $.ajax({
+//                url:"/city/province?Pro=",
+//                success:function (msg) {
+//                    if (msg && msg.code === "SUCCESS") {
+//                        alert(1)
+//                        console.log(msg);
+//                    } else {
+//                        alert(msg.message);
+//                    }
+//                }
+//            })
+//        }
+//    });
+
+    //点击城市显示对应城市名称
+    $cityUl.on("click",function (e) {
+        utils.mouseEvent();
+        $span3[0]["textContent"]=e.target.innerHTML;
+        var
+            pro=$span2[0]["textContent"]==="山西"?"shanxiNorth":($span2[0]["textContent"]==="西藏"?"xizang":PinYin.toConvert($span2[0]["textContent"])),
+            city=PinYin.toConvert($span3[0]["textContent"]);
+
+        //发送城市
+        $.ajax({
+            url:"/city\/city?Pro="+pro+"&City="+city,
+            success:function (msg) {
+                if (msg && msg.code === "SUCCESS") {
+                    console.log(msg);
+                    console.log(msg["data"]["city"]);
+                    count++;
+                    console.log(count)
+                } else {
+                    alert(msg.message);
+                }
+            }
+        })
+    });
+
+    //区级查询
+    $(document).ready(function () {
+        $.ajax({
+            url:"https://dev.apis.sh/PW7yo9FpO/city/area?CityID=22&Id=",
+            type:"get",
+            xhrFields:{withCredentials: true},
+            jsonp:"callback",
+            success:function (msg) {
+                if(msg && msg.code==="SUCCESS"){
+                    console.log(msg)
+                }else {
+                    alert(msg.message)
+                }
+            }
+        })
+    });
+
+    //切换性别改变圆点颜色
+    var flag=null;
+    $sex.on("click",function (e) {
+        utils.mouseEvent();
+        if(e.pageX<560){
+            flag=true;
+            $sexColor.css("left",64);
+//            $sexColor.addClass("right");
+            $sexWithoutColor.css("left",136);
+//            $sexWithoutColor.addClass("left");
+            console.log(flag)
+        }else {
+            $sexColor.css("left",136);
+//            $sexColor.addClass("left");
+            $sexWithoutColor.css("left",64);
+//            $sexWithoutColor.addClass("right")
+            flag=false;
+            console.log(flag)
+
+        }
+    });
+
+    //发送编辑账户信息（点击保存）
+    $save.on("click",function () {
+        var avatar=$avatar.attr("src"),
+            gender=flag?"man":"woman",
+//            city=[$span2[0]["textContent"],$span3[0]["textContent"]],
+            city=[1,3,2],
+            constellation=$span[0]["textContent"],
+            name=$("#nickname")[0]["value"];
+        avatar==="images/cherry_circle_middle.png"?avatar="":null;
+
+        $.ajax({
+//            url:"/account/profile",
+            url:"https://dev.apis.sh/PW7yo9FpO/account/profile",
+            type:"POST",
+//            contentType: "multipart/form-data",
+            xhrFields:{withCredentials: true},
+            data:{token: JSON.parse(localStorage.getItem("userData"))["token"],gender:gender,city:JSON.stringify(city),name:name,avatar:JSON.stringify(avatar)},//'city[]': [ '河北', '唐山' ] 传data之前先把city转化为JSON对象就好了
+            success:function (msg) {
+                console.log(111);
+                if(msg && msg.code==="SUCCESS"){
+                    console.log(msg);
+                    console.log("bingo");
+                    console.log(msg["data"]["user"]);
+                    localStorage.setItem('data',JSON.stringify(msg["data"].user));
+                    window.location.href="articleList.html";
+                }else {
+//                    alert(msg.message);
+                    console.log(1)
+                    console.log(msg)
+                }
+            }
+        })
+    })
+
+
+
+</script>
+</body>
+</html>

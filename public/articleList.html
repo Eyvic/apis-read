@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <style>
+        body{
+            /*width:1920px;*/
+            /*height:1376px;*/
+            /*background-color: #000;*/
+            width:1440px;
+            height:1024px;
+        }
+        .outer{
+            position: relative;
+            /*margin-top:352px;*/
+            /*margin-right:240px;*/
+            /*margin-left:240px;*/
+            width:1440px;
+            height:1024px;
+            background: #fff;
+        }
+        /*--------------header--------------*/
+        .header{
+            width:1440px;
+            height:60px;
+            text-align: center;
+        }
+        .header .nav{
+            position: relative;
+            width:1440px;
+            height:60px;
+            line-height:60px;
+            background: #7F4A88;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+        }
+        .header .nav .left{
+            width:300px;
+            height:33px;
+        }
+        .header .nav .left .title,.header .nav .left .logo{
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .left .logo{
+            margin-right:33px;
+        }
+        .header .nav .left .line{
+            position: absolute;
+            top:19px;
+            left:135px;
+            width:2px;
+            height:24px;
+            background-color: #fff;
+        }
+        .header .nav .right{
+            float: right;
+            margin-top:-35px;
+        }
+        .header .nav .right .photo{
+            margin-right:8px;
+            display: inline-block;
+            width:60px;
+            height:60px;
+            vertical-align: middle;
+            background: url("images/cherry_circle.png") no-repeat right center;
+            cursor: pointer;
+        }
+        .header .nav .right .select,.header .nav .right .write{
+            display: inline-block;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .nav .right .select{
+            margin-right:35.5px;
+            padding-right:20px;
+            width:35.5px;
+            background: url("images/icon_arrow_down.png") no-repeat 42px 24px;
+            cursor: pointer;
+        }
+        .header .nav .select .drop{
+            position: absolute;
+            top:55px;
+            z-index: 111;
+            display: none;
+            right:141.7px;
+            width:109px;
+            height:124.7px;
+            background: #FFFFFF;
+            border: 1px solid #F2EEF3;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
+            line-height:42px;
+        }
+        .header .nav .select .drop a{
+            padding-right:10px;
+            padding-left:18px;
+            display: inline-block;
+            width:92px;
+            height:42px;
+            line-height:42px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        /*.header .nav .select .drop a:hover{*/
+            /*z-index: 11;*/
+            /*background-color: #c2cce3;*/
+        /*}*/
+        .header .nav .select .drop .user{
+            background: url("images/icon_user.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .setting{
+            background: url("images/icon_setting.png") no-repeat 10px 12px;
+        }
+        .header .nav .select .drop .exit{
+            background: url("images/icon_exit.png") no-repeat 10px 12px;
+        }
+        .drop li:first-child:before {
+            content: " ";
+            font-size: 0;
+            line-height: 0;
+            margin: 0 15px -10px auto;
+            display: block;/*独占一行*/
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); /*一个正方形倾斜四十五度就是三角但是要把下半部分藏起来*/
+            position: relative;
+            top: -5px; /*露出上半部分*/
+            z-index: -1; /*隐藏下半部分*/
+        }
+        .header .nav .right>a{
+            margin-right:39px;
+            display: inline-block;
+            width:76px;
+            height:60px;
+        }
+        .header .nav .right .write{
+            margin-right:39px;
+            padding-left:26px;
+            width:50px;
+            height:60px;
+            background: url("images/icon_write.png") no-repeat 0 21px;
+            cursor: pointer;
+        }
+        /*-----------------content----------------*/
+        .content{
+            position: relative;
+            margin-top:45px;
+            overflow-y: scroll;
+        }
+        .content section{
+            position: relative;
+            width:998px;
+            height:241px;
+            margin:17px 200px 21px 242px;
+        }
+        .content section>img{
+            width:396px;
+            height:241px;
+            opacity:0.1;
+            filter:alpha(opacity=10);
+        }
+        .content section div{
+            position: absolute;
+            right:0;
+            top:0;
+            width:601px;
+            height:239px;
+            background: #FFFFFF;
+            border: 1px solid #F0E9F1;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12), 0 0 6px 0 rgba(0,0,0,0.04);
+            border-radius: 2px;
+        }
+        .content section div h2,.content section div h2 a,.content section div p{
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content section div h2{
+            margin-top:35px;
+            margin-left:36px;
+            width:530px;/*原始值width:260px;*/
+            font-weight:100;
+        }
+        .content section div p{
+            line-height: 24px;
+            margin-top:14px;
+            margin-left: 36px;
+            margin-right:39px;
+            text-indent:2em;
+            width:528px;
+        }
+        .content section div>img{
+            position: absolute;
+            bottom:30px;
+            left:36px;
+            width:36px;
+            height:36px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .content section div .name,.content section div .time{
+            float: left;
+        }
+        .content section div .name{
+            margin-left:38px;
+            padding-left:47px;
+            padding-right:31px;
+            width:92px;/*width:32px;*/
+            height:36px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        .content section div .name a{
+            display: inline-block;
+            width:32px;/*原始值*width:30px;*/
+            height:20px;
+            color: #222629;
+        }
+        .content section div .one{
+            background: url("images/lv_circle.png") no-repeat 0 12px;
+        }
+        .content section div .two{
+            background: url("images/nana_circle.png") no-repeat 0 12px;
+        }
+        .content section div .three{
+            background: url("images/cherry_circle.png") no-repeat 0 12px;
+        }
+        .content section div .name,.content section div .time,.content section div .like,.content section div .read{
+            padding-top:34px;
+        }
+        .content section div .time,.content section div .like,.content section div .read,.content section div .like a{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(34,38,41,0.7);
+            letter-spacing: 0;
+        }
+        .content section div .like,.content section div .read{
+            float: right;
+        }
+        .content section div .read{
+            margin-right:39px;
+            margin-left:66px;
+            padding-left:31px;
+            background: url("images/icon_saw.png") no-repeat 0 40px;
+        }
+        .content section div span.clicked a{
+            background: url("images/icon_thumb_up_like.png") no-repeat left center;
+            color:#7F4A88;
+        }
+        .content section div .like{
+            width:31px;
+            height:17px;
+        }
+        .content section div .like a{
+            padding-left:24px;
+            display: inline-block;
+            width:20px;/*原始值width=17px*/
+            height:18px;
+            background: url("images/icon_thumb_up.png")no-repeat left center;
+
+        }
+        .content section div .like .bg{
+            background: url("images/icon_thumb_up_like.png") no-repeat left center;
+            color:#7F4A88;
+        }
+        .content>a{
+            position: fixed;
+            right:110px;
+            bottom:112px;
+            /*right:136px;*/
+            /*bottom:155px;*/
+            width:45px;
+            height:45px;
+            background: #D8D8D8;
+            border-radius: 5px;
+        }
+        .content .load{
+            height:60px;
+        }
+        .content .load>img{
+            position: absolute;
+            left:689px;
+        }
+        .content div>img{
+            position: absolute;
+            left:689px;
+            bottom:0;
+            width:30px;
+            height:30px;
+        }
+        .content>div p{
+            position: absolute;
+            bottom: 4px;
+            left:729px;
+            width:64px;
+            height:22px;
+            opacity: 0.4;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        /*---------------footer---------------*/
+        .footer {
+            /*position: absolute;*/
+            /*bottom:0;*/
+            margin-top:24px;
+            width:1440px;
+            height:42px;
+            border-top:1px solid #7F4A88;
+            text-align: center;
+            padding-top:25px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="header">
+        <div id="nav" class="nav">
+            <div class="left">
+                <div class="logo">APIS</div>
+                <div class="title">悦读项目</div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="photo"></div>
+                <div class="select">
+                    <span>吕璐</span>
+                    <div id="drop" class="drop">
+                        <ul>
+                            <li>
+                                <a href="personal.html" class="user">个人中心</a>
+                            </li>
+                            <li>
+                                <a href="setting.html" class="setting">账户设置</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="exit">退出登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="writeArticle.html"><div class="write">写文章</div></a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <!--<section>-->
+            <!--<img src="images/didi.png" alt="AI+大数据">-->
+            <!--<div>-->
+                <!--<h2><a href="articlePage.html">雾霾太重，AI和大数据怎样参与抗霾？</a></h2>-->
+                <!--<p> 12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>-->
+                <!--<span class="name one"><a href="personal-secondSide.html">吕一</a></span>-->
+                <!--<span class="time">09:22</span>-->
+                <!--<span class="read">2432</span>-->
+                <!--<span class="like clicked"><a href="javascript:;">54</a></span>-->
+            <!--</div>-->
+        <!--</section>-->
+        <!--<section>-->
+            <!--<img src="images/AI.png" alt="AI+大数据">-->
+            <!--<div>-->
+                <!--<h2><a href="articlePage.html">雾霾太重，AI和大数据怎样参与抗霾？</a></h2>-->
+                <!--<p> 12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>-->
+                <!--<span class="name two">娜娜</span>-->
+                <!--<span class="time">09:22</span>-->
+                <!--<span class="read">2432</span>-->
+                <!--<span class="like"><a href="javascript:;">53</a></span>-->
+            <!--</div>-->
+        <!--</section>-->
+        <!--<section>-->
+            <!--<img src="images/application.png" alt="应用号">-->
+            <!--<div>-->
+                <!--<h2><a href="articlePage.html">首设“虚拟站点”，滴滴小巴正式上线</a></h2>-->
+                <!--<p> 12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>-->
+                <!--<span class="name three">吕璐</span>-->
+                <!--<span class="time">09:22</span>-->
+                <!--<span class="read">2432</span>-->
+                <!--<span class="like"><a href="javascript:;">53</a></span>-->
+            <!--</div>-->
+        <!--</section>-->
+        <a class="backTop" href="#nav">
+            <img src="images/icon_backtop.png">
+        </a>
+        <div class="load">
+            <img class="loading" src="images/icon_loading.png" alt="loading">
+            <p>正在加载</p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="info">Copyright © 2017 apis.sh All Rights Reserved | 陕ICP备15013925号-3</div>
+    </div>
+</div>
+<script src="./javascripts/jquery-1.11.3.min.js"></script>
+<script charset="UTF-8" src="javascripts/utils.js"></script>
+<script charset="UTF-8" src="javascripts/ejs.min.js"></script>
+<script charset="UTF-8" type="text/template" id="template">
+    <%$.each(data,function(index,articles){%>
+    <section>
+        <img id="cover" class="cover" data-src="<%=articles.cover%>" alt="封面<%=index+1%>" src="images/pic.svg">
+        <div>
+            <h2><a href="javascript:;" class="<%=articles.id%>"><%=articles.title%></a></h2>
+            <p><%=articles.abstract%></p>
+            <img src="<%=articles.avatar%>">
+            <span class="name"><%=articles.name%></span>
+            <span class="time"><%=articles.time%></span>
+            <span class="read"><%=articles.read%></span>
+            <span class="like"><a href="javascript:;"><%=articles.like%></a></span>
+        </div>
+    </section>
+    <%})%>
+</script>
+<script>
+    //下拉菜单悬停
+    ~function () {
+        var $personal=$(".right .photo,.right .select"),
+            $drop=$(".drop"),
+            $select=$(".select");
+        utils.hover($personal,$drop,$select);
+    }();
+
+    var page=12,
+        limit=5;
+    //加载数据
+    var article=(function () {
+        var $like=$(".like a");
+
+//        function bindEvent() {
+//            //获取本地存储的信息，判断是否有赞
+//            var support=localStorage.getItem('support');
+//            if(support){
+//                support=JSON.parse(support);
+//                if(support.isTap){
+//                    $like.attr('isTap',true);
+//                    $like.addClass('bg');
+//                }
+//            }
+//
+//            $like.on("click",function(){
+//                if($(this).attr('isTap')==='true')return;
+//                //结果发送至服务器
+////                $.ajax({
+////                    url:'http://matchweb.sports.qq.com/kbs/teamSupport?mid=100000%3A1470751&type='+$like.attr('type'),//改参数
+////                    dataType:'jsonp'
+////                });
+//                //只能点击一次
+//                $(this).attr('isTap',true);
+//                $(this).html(parseFloat($(this).html())+1).addClass('bg');
+//                localStorage.setItem('support',JSON.stringify({'isTap':true}));//改参数
+//            })
+//        }
+
+        function bindHTML(article) {
+            var aryy=[],aryy2=[];
+            for(var i=0;i<article.length;i++){
+                aryy.push(article[i]["avatar"].replace("avatar","https://dev.apis.sh/PW7yo9FpO/static/avatar"));
+                article[i]["avatar"]=aryy[i];
+            }
+            for(i=0;i<article.length;i++){
+                aryy2.push(article[i]["cover"].replace("cover","https://dev.apis.sh/PW7yo9FpO/static/cover"));
+                article[i]["cover"]=aryy2[i];
+            }
+            console.log(article);
+
+//            $(".content").html(ejs.render($("#template").html(),{data:article}));
+            $(".backTop").before(ejs.render($("#template").html(),{data:article}));
+
+//            bindEvent();
+        }
+
+        function zero(value) {
+            return value<10?"0"+value:value;
+        }
+        Date.prototype.getCreateTime=function () {
+            return zero(this.getHours())+":"+zero(this.getMinutes())
+        };
+
+        return{
+            init:function () {
+                $.ajax({
+                    url:'https://dev.apis.sh/PW7yo9FpO/posts/list?page='+page+'&limit='+limit+'&user=',
+                    type:"get",
+                    cache:false,
+                    xhrFields:{withCredentials: true},
+                    jsonp:"callback",
+                    success:function (msg) {
+                        if(msg &&msg.code==="SUCCESS"){
+                            var key="articles";
+                            var ary=[];
+                            for(key in msg){
+                                ary.push(msg[key])
+                            }
+                            console.log(ary[1]["articles"])
+
+                            var article=[];
+                            for(var i=0;i<ary[1]["articles"].length;i++){
+                                var time=new Date(ary[1]["articles"][i]["create_time"]),
+                                    obj={};
+                                obj["title"]=ary[1]["articles"][i]["title"];
+                                obj["abstract"]=ary[1]["articles"][i]["abstract"];
+                                obj["name"]=ary[1]["articles"][i]["author"]["name"];
+                                obj["time"]=time.getCreateTime();
+                                obj["read"]=ary[1]["articles"][i]["look_sum"];
+                                obj["like"]=ary[1]["articles"][i]["praise_sum"];
+                                obj["cover"]=ary[1]["articles"][i]["cover"];
+                                obj["avatar"]=ary[1]["articles"][i]["author"]["avatar"];
+                                obj["id"]=ary[1]["articles"][i]["_id"];
+                                article.push(obj);
+                            }
+                            bindHTML(article);
+//                            console.log(article);
+                        }
+                    },
+                    error:function (msg) {
+                        console.log(2)
+                        console.log(msg)
+                    }
+                })
+            }
+        }
+    })();
+    article.init();
+
+
+    //点击作者跳转
+    $(".content ").on("click","div img,.name",function () {
+        window.location.href="personal-secondSide.html";
+    });
+
+    //点击退出
+    $(".exit").on("click",function () {
+        localStorage.clear();
+        window.location.href="login.html";
+    });
+
+    //图片懒加载
+    function delayImg(curImg){
+        var oImg=new Image;
+        oImg.src=curImg.getAttribute("data-src");
+        oImg.onload=function(){
+            curImg.src=this.src;
+            curImg.dataset.src="";
+            utils.css(curImg,{
+                opacity:1
+            });
+            curImg=null;
+        };
+        curImg.isLoad=true;
+    }
+
+    function handleAllImg(){
+        var imgList = document.getElementsByClassName('cover');
+        for(var i=0;i<imgList.length;i++){
+            if(imgList[i].isLoad){
+                continue;
+            }
+            var a=utils.offset(imgList[i]).top+imgList[i].offsetHeight;
+            var b=utils.win("clientHeight")+utils.win("scrollTop");
+            if(a<b){
+                delayImg(imgList[i]);
+            }
+        }
+    }
+
+    window.setTimeout(handleAllImg,500);
+    window.onscroll=handleAllImg;
+
+    //瀑布流
+    var loading = document.getElementsByClassName('loading')[0];
+    if (loading.getBoundingClientRect().top+loading.offsetHeight<document.body.clientHeight) {
+        page+=1;
+        article.init();
+    }
+    var content=document.getElementsByClassName("content")[0];
+
+
+    content.onscroll=function () {
+        for(var i=0;i<imgList.length;i++){
+            this.scrollTop+this.clientHeight>imgList[i].offsetTop?delayImg(imgList[i]):null;
+        }
+    };
+
+    //存储及清空信息
+//    window.onload=function(){
+//        try{
+//            localStorage.pages++
+//        }catch(e){
+//            localStorage.pages=1
+//        }
+//    };
+//    window.onunload=function(){
+//        localStorage.pages--;
+//        if(localStorage.pages=0){
+//            localStorage.clear()
+//        }
+//    };
+
+    //点击标题跳转
+
+    $(".content").on("click","h2 a",function (e) {
+        console.log(this);
+        utils.mouseEvent(e);
+
+        var tar=null;
+        $("section").each(function (index,item) {
+            item===e.target.parentNode.parentNode.parentNode?tar=index:null;
+        });
+        if(tar<=limit){
+            page=12;
+        }else {
+            page=12+Math.ceil(tar/limit);
+        }
+        $.ajax({
+           url:"https://dev.apis.sh/PW7yo9FpO/posts/details?id="+e.target.className,
+           type:"get",
+           xhrFields:{withCredentials: true},
+           jsonp:"callback",
+           success:function (msg) {
+               if(msg && msg.code==="SUCCESS"){
+                   console.log(msg);
+                   localStorage.setItem("article",JSON.stringify(msg));
+                   localStorage.setItem("page",page);
+                   window.location.href="articlePage.html";
+               }else {
+                   alert(msg.message)
+               }
+           }
+        })
+    });
+
+
+</script>
+</body>
+</html>

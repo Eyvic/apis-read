@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <style>
+        body{
+            /*width:1739px;*/
+            /*height:1159px;*/
+            /*background-color: #000;*/
+            width:1440px;
+            height:1024px;
+        }
+        .outer{
+            position: relative;
+            /*margin:107px 149px 28px 150px;*/
+            width:1440px;
+            height:1024px;
+            background: url('./images/bg_signin.jpg');
+        }
+        /*------------------head----------------*/
+        .header{
+            width:1440px;
+            height:60px;
+            background: rgba(127,74,136,0.3);
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+            position: relative;
+        }
+        .header .title,.header .logo{
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .header .logo{
+            margin-left:58px;
+            margin-top:13px;
+            /*原始值margin-left:39px;*/
+            /*原始值margin-top:17px;*/
+            width:78px;
+            height:26px;
+        }
+        .header .border{
+            position: absolute;
+            top:19px;
+            left:135px;
+            width:2px;
+            height:24px;
+            background-color: #fff;
+
+        }
+        .header .title{
+            position: absolute;
+            left:150px;
+            top:13px;
+            width:109px;
+            height:33px;
+        }
+        /*-----------------content---------------*/
+        .content{
+            position: relative;
+            width:567px;
+            height:510px;
+            margin:165px auto;
+            background-color: rgba(255,255,255,0.1);
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .content .signIn,.content .signUp{
+            width:46px;
+            height:30px;
+            line-height:30px;
+        }
+        .content .signIn{
+            position: absolute;
+            left:206px;
+            top:53px;
+            font-family: PingFangSC-Regular;
+            font-size: 22px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        .content .signUp{
+            position: absolute;
+            top:53px;
+            right:203px;
+            opacity: 0.7;
+            font-family: PingFangSC-Regular;
+            font-size: 22px;
+            color: #7F4A88;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        .content .borderBottom{
+            position: absolute;
+            top:80px;
+            right:181px;
+            width:90px;
+            height:10px;
+            border-bottom:3px solid #7F4A88;
+        }
+        .content .form{
+            width:417px;
+            height:279px;
+            margin-top:132px;
+            margin-left:77px;
+        }
+        .content .form input{
+            outline:none;
+            font-weight:100;
+            margin-bottom:17px;
+        }
+        .content .form .phone,.content .form .password,.content .form .repeatPw{
+            padding-left:13px;
+            width:395px;
+            height:40px;
+            line-height:40px;
+            background: none;
+            border: 1px solid #7F4A88;
+            border-radius: 5px;
+        }
+        .content .form .check{
+            padding-left:13px;
+            width:274px;
+            height:40px;
+            line-height:40px;
+            background: none;
+            border: 1px solid #7F4A88;
+            border-radius: 5px;
+        }
+        .content .form .phone::-webkit-input-placeholder,
+        .content .form .check::-webkit-input-placeholder,
+        .content .form .password::-webkit-input-placeholder,
+        .content .form .repeatPw::-webkit-input-placeholder
+        { /* WebKit browsers */
+            font-family: ArialMT;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0;
+        }
+        .content .form .phone:-moz-placeholder,
+        .content .form .check:-moz-placeholder,
+        .content .form .password:-moz-placeholder,
+        .content .form .repeatPw:-moz-placeholder
+        { /* Mozilla Firefox 4 to 18 */
+            font-family: ArialMT;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0;
+        }
+        .content .form .phone::-moz-placeholder,
+        .content .form .check::-moz-placeholder,
+        .content .form .password::-moz-placeholder,
+        .content .form .repeatPw::-moz-placeholder
+        { /* Mozilla Firefox 19+ */
+            font-family: ArialMT;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0;
+        }
+        .content .form .phone:-ms-input-placeholder,
+        .content .form .check:-ms-input-placeholder,
+        .content .form .password:-ms-input-placeholder,
+        .content .form .repeatPw:-ms-input-placeholder
+        { /* Internet Explorer 10+ */
+            font-family: ArialMT;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0;
+        }
+        .content input.identify{
+            margin-left:12px;
+            width:103px;
+            height:42px;
+            background: #7F4A88;
+            border-radius: 3px;
+            border:none;
+            font-family: ArialMT;
+            font-size: 13px;
+            font-weight:100;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        .content .form button{
+            width:410px;
+            height:42px;
+            background: #7F4A88;
+            border-radius: 5px;
+            border:none;
+            font-family: PingFangSC-Regular;
+            font-size: 18px;
+            font-weight:100;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        .content p{
+            margin:21px auto 0;/*Safari里width改为120后p才会居中*/
+            width:144px;/*原始值width:120px;*/
+            height:18px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            font-weight:100;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            cursor: pointer;
+        }
+        /*-----------------footer----------------*/
+        .footer{
+            position: absolute;
+            bottom:0;
+            width:100%;
+            height:66px;
+            border-top:1px solid #FFFFFF;
+        }
+        .footer .info{
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            width:520px;
+            height:18px;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="header">
+        <div class="logo">APIS</div>
+        <div class="border"></div>
+        <div class="title">悦读项目</div>
+    </div>
+    <div class="content">
+        <span class="signIn" id="signIn">登录</span>
+        <span class="signUp" id="signUp">注册</span>
+        <div class="borderBottom" id="borderBottom"></div>
+        <form class="form" id="form" >
+            <input type="text" placeholder="请输入手机号码" class="phone" id="phone" name="account">
+            <input type="text" placeholder="请输入短信验证码" class="check" id="check" name="enterCaptcha">
+            <input type="button" value="获取验证码" class="identify" id="identify">
+            <input type="password" placeholder="请输入6～32位密码" class="password" id="password" name="password">
+            <input type="password" placeholder="重复密码" class="repeatPw" id="repeatPw">
+            <button type="button" class="register" id="register">注&nbsp&nbsp&nbsp&nbsp册</button>
+        </form>
+        <p id="signInP">已有账户，马上登录</p>
+    </div>
+    <div class="footer">
+        <div class="info">Copyright © 2017 apis.sh All Rights Reserved | 陕ICP备15013925号-3</div>
+    </div>
+</div>
+<script charset="UTF-8" src="./javascripts/jquery-1.11.3.min.js"></script>
+<script charset="UTF-8" src="./javascripts/utils.js"></script>
+<script>
+    var $signIn=$("#signIn"),
+        $signUp=$("#signUp"),
+        $borderBottom=$("#borderBottom"),
+        $register=$("#register"),
+        $signInP=$("#signInP"),
+        $userPhone=$("#phone"),
+        $enterNum=null,
+        $identify=$("#identify"),
+        $password=$("#password"),
+        $enterPassword=null,
+        $check=$("#check"),
+        $repeatPw=$("#repeatPw");
+    //登录注册悬停
+    ~function () {
+        $signIn.on("mouseover",function () {
+            $(this).css("color","#7F4A88");
+            $signUp.css("color","rgba(255,255,255,0.7)");
+            $borderBottom.css("right",294);
+            $register.html("登&nbsp&nbsp&nbsp&nbsp录");
+            $signInP.css("display","none");
+            $check.css("display","none");
+            $identify.css("display","none");
+            $repeatPw.css("display","none");
+        });
+        $signUp.on("mouseover",function () {
+            $(this).css("color","#7F4A88");
+            $signIn.css("color","rgba(255,255,255,0.7)");
+            $borderBottom.css("right",181);
+            $register.html("注&nbsp&nbsp&nbsp&nbsp册");
+            $signInP.css("display","block");
+            $check.css("display","inline-block");
+            $identify.css("display","inline-block");
+            $repeatPw.css("display","inline-block");
+        })
+    }();
+
+    //获取用户输入的手机号
+    $userPhone.on("keyup",function () {
+        $enterNum=$(this)["context"].value;
+        console.log($userPhone)
+        console.log($userPhone[0]["value"])
+    });
+    //获取用户输入的密码
+    $password.on("keyup",function () {
+        $enterPassword=$(this)["context"].value;
+    });
+
+
+    //获取验证码
+    $identify.on("click",function () {
+        sendAjax()
+    });
+    function sendAjax() {
+        $.ajax({//如果加上dataType:"jsonp"; chrome一直报错
+            url: "https://dev.apis.sh/PW7yo9FpO/captcha?type=register&phone=" + $enterNum+"&callback=?",
+            xhrFields:{withCredentials: true},
+            jsonp:"callback",
+//            url: "/captcha?type=register&phone=" + $enterNum[0]["value"],
+            success: function (jsonData) {
+                if (jsonData && jsonData.code === "SUCCESS") {
+                    console.log(jsonData)
+                    $check.val(jsonData["captcha"]);
+                } else {
+                    alert(jsonData.message);
+                    $check.val("");
+                }
+            }
+        })
+    }
+
+    //注册及登录
+    $register.on("click",function () {
+        if(/登/g.test($register.html())){
+            signIn();
+        }else {
+            if($repeatPw[0].value!=$password[0].value){
+                alert("密码不同，请重新输入");
+                return;
+            }
+            register();
+        }
+
+    });
+
+    function register() {
+        $.ajax({
+            url:"https://dev.apis.sh/PW7yo9FpO/account/register",
+            type:"POST",
+            xhrFields:{withCredentials: true},
+            data:{account: $enterNum, password: $enterPassword, captcha: $check.val()},
+            success:function (msg) {
+                if(msg && msg.data!=undefined){
+                    console.log(msg);
+//                    localStorage.setItem('userData',JSON.stringify(msg["data"].user));
+//                    localStorage.setItem('token',JSON.stringify(msg["data"].user.token));
+                }else {
+                    alert(msg.message);
+                }
+            },
+            error:function (err) {
+                console.log("注册失败"+err)
+            }
+        })
+    }
+
+
+    function signIn() {
+        $.ajax({
+            url:"https://dev.apis.sh/PW7yo9FpO/account/login",
+            type:"POST",
+            xhrFields:{withCredentials: true},
+            data:{account: $userPhone[0]["value"], password:$enterPassword},
+            success:function (msg) {
+                if(msg && msg.data!=undefined){
+                    console.log(msg);
+                    localStorage.setItem('userData',JSON.stringify(msg["data"].user));
+                    window.location.href="setting.html";
+                }else {
+                    alert(msg.message);
+                }
+            },
+            error:function (err) {
+                console.log("登录失败"+err)
+            }
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+1.获取验证码
+    url：/captcha GET
+    参数：?getCaptcha=register或reset //验证码类型(register(注册)或者reset(重置密码))
+         &phone=xxx //11位手机号
+    返回：
+        '{
+            "code":"SUCCESS",//param_incomplete参数不全，
+                               account_has_registered账户已存在，
+                               phone_format_error用户名不符合要求，
+                               param_type_error验证码类型错误
+            "captcha":"249975",
+            "message":""//请求参数不完整,
+                          用户已注册,
+                          手机号格式错误，
+                          参数只能传规定值
+        }'
+2.注册
+    url：/account/register POST
+    参数：account	//账号(11位手机号)
+         password	//密码
+         captcha	//验证码(6位数字)
+    返回：
+        '{
+            "code": "SUCCESS",//param_incomplete参数不全，
+                                account_has_registered用户已注册，
+                                phone_format_error用户名不符合要求，
+                                sms_captcha_fail验证码错误
+                                sms_captcha_overdue验证码失效
+            "message"：""，//请求参数不完整，
+                            用户已注册，
+                            手机号格式错误，
+                            短信验证码错误，
+                            短信验证码已过期
+            "data": {
+                "user": {
+                    "account": "18792548324",
+                    "name": "187****8324",
+                    "token": "8bccdca110bd48df4307c70564660bc090d742ef",
+                    "background": "background/bg_center1.jpg",
+                    "_id": "5a6fd2160780b12b22a50d98",
+                    "city": []
+                }
+            }
+        }'
+3.登录
+    url：/account/login POST
+    参数：account	//账号
+         password	//密码
+    返回：
+        '{
+            "code": "SUCCESS",//param_incomplete参数不全
+                                account_password_error用户名或密码错误
+            "message"："",//请求参数不完整
+                            账户或密码错误
+            "data": {
+                "user": {
+                    "avatar": "avatar/23afed58f0fb30695763291fca92954b",
+                    "_id": "5a60439b84f151301b1f042e",
+                    "account": "18792548321",
+                    "name": "187****8321",
+                    "token": "da8f89211cffb4c8aba72ef5ff28649b0e572f0a",
+                    "background": "background/bg_center5.jpg",
+                    "constellations": "巨蟹座"
+                }
+            }
+        }'
+4.星座
+    url：/constellations/query GET
+    参数：无
+    返回：
+        '{
+             "code": "SUCCESS",
+             "data": {
+                 "constellations": [
+                     "白羊座",
+                     "金牛座",
+                     "双子座",
+                     "巨蟹座",
+                     "狮子座",
+                     "处女座",
+                     "天秤座",
+                     "天蝎座",
+                     "射手座",
+                     "摩羯座",
+                     "水瓶座",
+                     "双鱼座"
+                 ]
+             }
+         }'
+5.省、市、区级联（跳过ID，所有的ProID、CityID变为Pro、City）
+    省级查询：
+        url：/city/province GET
+        参数：?ProID	//省级拼音（可选）
+        返回：
+            '{
+                 "code": "SUCCESS",//param_error参数错误
+                 "message":"",//请求参数错误
+                 "data": {
+                     "province": "北京市"
+                     //若未传值：
+                     "province": [
+                         {
+                             "ProID": 5,
+                             "name": "内蒙古自治区",
+                             "ProRemark": "自治区"
+                         },
+                         {
+                             "ProID": 10,
+                             "name": "江苏省",
+                             "ProRemark": "省份"
+                         },
+                     （......省略剩余省份）
+                     ]
+                 }
+             }'
+    市级查询：
+        url：/city/city GET
+        参数：?ProID	//省级列表中返回的ProID
+             &CityID //城市ID	        （参数至少二选一）
+        返回：
+            //ProID
+            '{
+                 "status": 200,
+                 "data": {
+                     "city": [
+                         {
+                             "CityID": 63,
+                             "name": "南京市",
+                             "ProID": 10
+                         },
+                         {
+                             "CityID": 68,
+                             "name": "扬州市",
+                             "ProID": 10
+                         },
+                     （......省略剩余城市）
+                     ]
+                 }
+             }'
+            //CityID
+            '{
+                 "code": "SUCCESS",//param_error参数错误
+                                     param_incomplete参数不全
+                 "message":"",//请求参数错误
+                                请求参数不完整
+                 "data": {
+                     "city": "萍乡市"
+                 }
+             }'
+    区级查询：
+        url：/city/area GET
+        参数：?CityID	//市级列表中返回的CityID
+             &Id 	//地区Id              （参数至少二选一）
+        返回：
+            '{
+                "status": 200,
+                "data": {
+                    "area": [
+                        {
+                            "_id": "59e5b3a939f61f59d3d75e42",
+                            "Id": 742,
+                            "DisName": "楚州区",
+                            "CityID": 71,
+                            "__v": 0
+                        },
+                        {
+                            "_id": "59e5b3a939f61f59d3d75e47",
+                            "Id": 747,
+                            "DisName": "盱眙县",
+                            "CityID": 71,
+                            "__v": 0
+                        },
+                        （......省略剩余城市）
+                    ]
+                }
+            }'
+            //Id
+            '{
+                "code": "SUCCESS",//param_error参数错误
+                                    param_incomplete参数不全
+                "message":"",//请求参数错误
+                               请求参数不完整
+                "data": {
+                    "area": "东城区"
+                }
+            }'
+6.编辑账户信息
+    url: (-head multipart/form-data) /account/profile POST
+    参数:token	//用户临时身份凭据
+        avatar	//用户新头像（小于300k）（可选）               （可选中至少一个）
+        gender	//性别(传递'man'或者'woman')（可选）
+        city	//用户新地址(例:[1,1,1])（可选）
+        constellation	//用户星座（可选）
+        name	//用户新昵称（可选）
+    返回：
+        '{
+            "code": "SUCCESS",//param_type_error传入city参数错误（即非数组或长度不为3或某项非整数（0-35、0-372、0-2825））
+                                param_incomplete参数不全
+                                param_type_error参数错误
+                                account_token_invalid登录状态失效
+            "message":"",//参数只能传规定值
+                           请求参数不完整
+                           参数只能传规定值
+                           身份已失效,请重新登陆
+            "data": {
+                "user": {
+                    "_id": "59e5be977d8df60301c20541",
+                    "account": "12345678910",
+                    "name": "吕绿绿",
+                    "token": "46b08f7ba1304615af513205bc00ace53561997d",
+                    "background": "https://unsplash.it/1080/720?image=191",
+                    "city": [1,1,1],
+                    "gender": "man",
+                    "avatar": "/file/img/fa3ca0ff26d429c2fa22204552da2559"
+                }
+            }
+        }'
+7.重置密码
+    url： /account/reset POST
+    参数:password	//新密码
+        token	//用户登录状态下必传（可选）
+        captcha	//验证码
+        phone	//手机号(用户未登录时传入)（可选）
+    返回：
+        '{
+             "code": "SUCCESS",//account_token_invalid登录失效
+                                 sms_captcha_fail验证码错误
+                                 sms_captcha_overdue验证码失效
+                                 account_not_found用户不存在
+                                 phone_format_error手机号格式错误
+             "message":"",//身份已失效,请重新登陆
+                            短信验证码错误
+                            短信验证码已过期
+                            用户不存在
+                            手机号格式错误
+             "token": "3beca0b99c560ecf7f942276412d40e5bbc021ac"
+         }'
+8.文章列表
+    url: /posts/list GET
+    参数:?page	//第几页文章
+        &limit	//每页文章数量
+        &user	//文章作者id(传递此参数返回该作者所写文章)	（可选）
+    返回:
+        '{
+             "code": "SUCCESS",//param_incomplete参数不全
+                                 param_error参数错误
+                                 account_not_found当传入user参数错误时
+             "message":"",//"请求参数不完整"
+                            "请求参数错误"
+                            "用户不存在"
+             "data": {
+                 "articles": [
+                     {
+                         "_id": "5a17e548d46b7b0af47684a0",
+                         "title": "比起啃老，中国人更爱啃亲戚",
+                         "cover": "cover/25316a9aafda0d9d680d6bf40154586a",
+                         "abstract": "在中国，亲戚交往中有这样一种观点：“我们都是亲戚，计较这些干什么？” 于是，生活中多了这样一批亲戚： 来你家蹭吃蹭喝，稍微表示不满，就教训你不尊重亲戚，不是一家人。 钱不够花...",
+                         "create_time": 1511514175000,
+                         "author": {
+                             "_id": "5a17e545d46b7b0af4768453",
+                             "name": "槽值",
+                             "avatar": "avatar/c166b26c480b42c315234131712b68c8"
+                         },
+                         "look_sum": 41,
+                         "praise_sum": 2
+                     },
+               （......省略剩余文章）
+             ],
+             "count": 1002
+         }'
+9.文章详情
+    url： /posts/details GET
+    参数：?id	文章id
+    返回：
+        '{
+             "code": "SUCCESS",//param_incomplete参数不全
+                                 article_not_found参数错误
+             "message"："",//请求参数不完整
+                            文章不存在
+             "data": {
+                 "article": {
+                     "_id": "5a17e548d46b7b0af47684a0",
+                     "title": "比起啃老，中国人更爱啃亲戚",
+                     "pic": "pic/2971666ec8e72e0f68e34a957530b6cf",
+                     "body": "\n          <p>在中国，亲戚交往中有这样一种观点：“我们都是亲戚，计较这些干什么？”</p><p>于是，生活中多了这样一批亲戚：</p>(省略若干字),
+                     "create_time": 1511514175000,
+                     "author": {
+                         "_id": "5a17e545d46b7b0af4768453",
+                         "name": "槽值",
+                         "avatar": "avatar/c166b26c480b42c315234131712b68c8"
+                     },
+                     "look_sum": 41,
+                     "praise_sum": 2
+                 }
+             }
+         }'
+10.发表文章
+    url： (-head multipart/form-data) /posts/add POST
+    参数:token	//用户临时身份凭据
+        title	//文章标题（小于1M）
+        pic	//文章封面
+        body	//文章内容
+    返回：
+        '{
+             "code": "SUCCESS",//param_incomplete参数不全
+                                 article_has_exist文章标题重复
+                                 account_token_invalid登录状态失效
+
+             "message": "发表成功"//请求参数不完整
+                                   文章标题已存在
+                                   身份已失效，请重新登录
+         }'
+11.发表评论
+    url： /comment/add POST
+    参数:token	//用户临时身份凭据
+        body	//评论内容
+        article	//文章id
+    返回：
+        '{
+             "code": "SUCCESS",//param_incomplete参数不全
+                                 article_not_found文章id错误
+                                 account_token_invalid登录状态失效
+             "message": "发表成功"//请求参数不完整
+                                  文章不存在
+                                  身份已失效，请重新登录
+         }'
+12.评论列表
+    url：/comment/list GET
+    参数?page	//第几页文章
+        &limit	//每页文章数量
+        &article	//文章id
+    返回：'{
+            "code": "SUCCESS",//param_incomplete参数不全
+                                param_error参数错误
+            "message":"",//请求参数不完整
+                           请求参数错误
+            "data": {
+                "comments": [
+                    {
+                        "_id": "5a5588ccef6aee1381003c90",
+                        "body": "'年后啊'",
+                        "author": {
+                            "_id": "5a18028b3f548155c68022b7",
+                            "name": "123****8913"
+                        },
+                        "praise_sum": 18,
+                        "create_time": 1515555020908
+                    },
+                    {
+                        "_id": "5a18039a61e0b757a6f3a527",
+                        "body": "'年后啊'",
+                        "author": {
+                            "_id": "5a18028b3f548155c68022b7",
+                            "name": "123****8913"
+                        },
+                        "praise_sum": 95,
+                        "create_time": 1511523226160
+                    }
+                ]
+                （......省略剩余评论）
+            },
+            "count": 6
+        }'

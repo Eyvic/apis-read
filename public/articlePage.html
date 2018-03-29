@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheets/reset.css">
+    <style>
+        body{
+            width:1440px;
+            height:100%;
+            overflow-y: scroll;
+            position: relative;
+
+        }
+        .outer{
+            width:1440px;
+            background: #fff;
+        }
+        /*--------------header--------------*/
+        .nav{
+            width:1440px;
+            height:60px;
+            line-height:60px;
+            text-align: center;
+            background: #7F4A88;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+        }
+        .nav .left{
+            width:300px;
+            height:33px;
+        }
+        .nav .left .title,.nav .left .logo{
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .nav .left .logo{
+            margin-right:33px;
+        }
+        .nav .left .line{
+            position: absolute;
+            top:19px;
+            left:135px;
+            width:2px;
+            height:24px;
+            background-color: #fff;
+        }
+        .nav .right{
+            margin-top:-35px;
+            float: right;
+        }
+        .nav .right .login,.nav .right .register,.nav .right .write{
+            display: inline-block;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+        }
+        .nav .right .login{
+            margin-right:25px;
+            width:32px;/*原始值width:29px;*/
+            height:60px;
+        }
+        .nav .right .register{
+            margin-right:29px;
+            width:32px;/*原始值width:29px;*/
+            height:60px;
+        }
+        .nav .right>a{
+            margin-right:10px;
+            display: inline-block;
+            width:76px;
+            height:60px;
+        }
+        .nav .right .write{
+            margin-right:39px;
+            padding-left:26px;
+            display: inline-block;
+            width:50px;
+            height:60px;
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            background: url("images/icon_write.png") no-repeat 0 21px;
+            cursor: pointer;
+        }
+        /*-----------------content----------------*/
+        .content{
+            width:906px;
+            margin:67px auto 0;
+            height:100%;
+        }
+
+        .content h2{
+            margin-right:58px;
+            display: inline-block;
+            /*width:297px;*/
+            height:25px;
+            font-family: PingFangSC-Semibold;
+            font-size: 18px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content .shareImg{
+            margin-right:9.5px;
+            width:13.5px;
+            height:15px;
+        }
+        .content .share{
+            position: relative;
+            display: inline-block;
+            width:32px;/*原始值width:29px;*/
+            height:14px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(127,74,136,0.7);
+            letter-spacing: 0;
+            line-height: 14px;
+            cursor: pointer;
+        }
+        .content .QRcode{
+            position: absolute;
+            top:32px;
+            left:-152%;
+            width:147px;
+            height:191px;
+            z-index: 11;
+            display: none;
+            background: #FFFFFF;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.20);
+            cursor: default;
+        }
+        .content .QRcode p{
+            margin:16px auto 15px;
+            width:112px;/*原始值width:102px;*/
+            height:17px;
+            font-family:PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content .QRcode img{
+            margin-left:7px;
+            margin-bottom:11px;
+            width:132px;
+            height:132px;
+        }
+        .content>img{
+            margin-right:9.5px;
+            width:15px;/*原始值width:13.5px;*/
+            height:15px;
+            cursor: pointer;
+        }
+        .content>.writer{
+            margin-top:12px;
+            margin-bottom:17px;
+            width:100%;
+            height:36px;
+        }
+        .content>.writer img{
+            width:36px;
+            height:36px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+        .content div .nameUp{
+            margin-right:20px;
+            margin-left:11px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content div .nameUp a{
+            display: inline-block;
+            height:20px;
+        }
+        .content div .nameUp a,.content div .timeUp,.content div .likeUp,.content div .read{
+            margin-top:8px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(34,38,41,0.7);
+            letter-spacing: 0;
+        }
+        .content div .timeUp{
+            margin-right:99px;
+        }
+        .content div .read{
+            padding-left:31px;
+            background: url("images/icon_saw.png") no-repeat left center;
+        }
+        .content div span.clicked{
+            background: url("images/icon_thumb_up_like.png") no-repeat left center;
+            color:#7F4A88;
+        }
+        .content div .likeUp{
+            margin-top:8px;
+            margin-right:62px;
+            height:20px;
+        }
+        .content div .likeUp a{
+            padding-left:24px;
+            display: inline-block;
+            height:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(34,38,41,0.7);
+            letter-spacing: 0;
+            background: url("images/icon_thumb_up.png")no-repeat left center;
+
+        }
+        .content .pic{
+            margin-bottom:40px;
+
+            width:906px;
+            height:375px;
+        }
+        .content .pic img{
+            width:100%;
+            height:100%;
+        }
+        .content .article {
+            padding-bottom:24px;
+            width:100%;
+            height:100%;
+            border-bottom:1px solid rgba(127,74,136,0.5);
+        }
+        .content .article p{
+            margin-bottom:16px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+            line-height: 24px;
+            text-indent:2em;
+        }
+        .content .comment{
+            position: relative;
+            margin-top:31px;
+            overflow: hidden;
+            width:100%;
+            /*height:700px;*/
+        }
+        .content .comment h2{
+            margin-bottom:28px;
+            width:64px;
+            /*原始值*width:58px;*/
+            height:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            font-weight:100;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content .comment .writeComment{
+            padding-top:13px;
+            padding-left:14px;
+            display: block;
+            width:893px;
+            height:90px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(34,38,41,0.7);
+            letter-spacing: 0;
+            background: rgba(127,74,136,0.2);
+            border-radius: 5px;
+            border:none;
+            resize: none;
+            outline:none;
+        }
+        .content .comment button{
+            position: absolute;
+            top:173px;
+            right:0;
+            width:88px;
+            height:36px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            line-height: 14px;
+            background: #7F4A88;
+            border-radius: 4px;
+        }
+        .content .recentComment{
+            margin-top:74px;
+        }
+        .content .recentComment>p{
+            margin-bottom:21px;
+            width:64px;
+            /*原始值*width:58px;*/
+            height:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content .recentComment section{
+            margin-bottom:24px;
+            width:906px;
+            border-top:1px solid rgba(127,74,136,0.2);
+        }
+        .content .recentComment .writer{
+            margin-top:20px;
+            margin-bottom:9px;
+            width:212px;
+            height:36px;
+        }
+        .content .recentComment .name,.content .recentComment .time{
+            float: left;
+        }
+        .content .recentComment .name{
+            padding-left:37px;
+            padding-right:20px;
+            height:26px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+            background: url("images/cherry_circle_small.png") no-repeat left center;
+        }
+        .content .recentComment .name a{
+            color: #222629;
+        }
+
+        .content .recentComment .time,.content .recentComment .like{
+            height:20px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+            opacity: 0.7;
+        }
+        .content .recentComment .like{
+            padding-left:24px;
+            float: right;
+            color:#222629;
+            background: url("images/icon_thumb_up.png") no-repeat left center;
+            cursor: pointer;
+        }
+        .content .recentComment .like a{
+            display: inline-block;
+            width:17px;
+            color:#222629;
+        }
+        .content .recentComment .like .bg{
+            background: url("images/icon_thumb_up_like.png") no-repeat left center;
+            color:#7F4A88;
+        }
+        .content .recentComment section>p{
+            margin-left:38px;
+            width:368px;
+            /*原始值width:327px;*/
+            height:17px;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .content .recentComment .commentList{
+            width:908px;
+            /*height:325px;*/
+        }
+        /*---------------footer---------------*/
+        .footer {
+            margin-top:50px;
+            /*position: absolute;*/
+            /*bottom:0;*/
+            /*left:0;*/
+            width:1440px;
+            height:69px;
+            border-top:1px solid #7F4A88;
+            text-align: center;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #222629;
+            letter-spacing: 0;
+        }
+        .footer .info{
+            margin-top:22px;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="nav">
+        <div class="left">
+            <div class="logo">APIS</div>
+            <div class="title">悦读项目</div>
+            <div class="line"></div>
+        </div>
+        <div class="right">
+            <a class="login" href="login.html">登录</a>
+            <a class="register" href="login.html">注册</a>
+            <a class="write" href="writeArticle.html">写文章</a>
+        </div>
+    </div>
+    <div class="content">
+        <!--<h2>首设“虚拟站点”，滴滴小巴正式上线</h2>-->
+        <!--<img class="shareImg" src="images/icon_share.png">-->
+        <!--<div class="share">-->
+            <!--分享-->
+            <!--<div class="QRcode">-->
+                <!--<p>使用微信扫一扫</p>-->
+                <!--<img src="images/QRcode.png">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="writer">-->
+            <!--<span class="nameUp"><a href="personal-secondSide.html">吕一</a></span>-->
+            <!--<span class="timeUp">09:22</span>-->
+            <!--<span class="read">2432</span>-->
+            <!--<span class="likeUp clicked"><a href="javascript:;">54</a></span>-->
+        <!--</div>-->
+        <!--<div class="pic">-->
+            <!--<img src="images/didi.png">-->
+        <!--</div>-->
+        <!--<div class="article">-->
+            <!--<p>介夫子消息，12月15日滴滴小巴业务正式上线，产品首期已在北京、成都部分区域开通。开通地区的用户可通过手机客户端滴滴出行来呼叫小巴，小巴会智能计算乘客上车点和下车点，乘客选择确认后，就会通知用户和小巴“约会”的时间和地点。</p>-->
+            <!--<p>滴滴出行高级产品总监罗文介绍，“用户出行需求分门别类，通过技术手段可以实现对整体用户的出行需求进行细分和聚类管理，实现价格浮动、路线浮动，小巴就是这样一个产品。”</p>-->
+            <!--<p>“例如用户从地铁站出来，对去往相同方向的乘客进行聚集，让他们搭乘同一辆车出行，但价格可能不一样，路线也是动态的。基于滴滴的人工智能技术，智能小巴保障了用户体验，也实现了城市整体的高效出行。”</p>-->
+            <!--<p>滴滴小巴具有智能计价、虚拟站点以及最优路径规划等功能。“根据站点、线路、时间以及实时供需等30多个影响因素进行智能报价，线路热度越高，分摊成本越少，让5元内专座出行成为可能。”</p>-->
+            <!--<p>滴滴小巴还将顺路用户聚集到同一个上车点，即虚拟站点。基于滴滴大数据，通过热力图挖掘出高覆盖、密集的上车点。据悉，所有虚拟站点的设立都要求易于车辆停靠，并且易于乘客找到。</p>-->
+            <!--<p>“无固定路线也是我们产品的特色，是完全按需的出行产品，根据需求规划路径不断引导车辆行驶，当有用户叫车时，滴滴小巴会根据需求智能计算路径，在体验范围内进行最优供需匹配，动态调整路线。”小巴产品负责人说。</p>-->
+            <!--<p>该负责人称，“小巴业务的乘客上车效率达到30~40秒，司乘按照平台引导至指定站点碰头，无需提前电话沟通，简化了司乘双方的沟通流程，降低沟通和等待的时间成本。”</p>-->
+            <!--<p>滴滴小巴目前开通的区域包括北五环及以北区域，新增的区域包括天通苑、清河、霍营、西二旗、上地等。</p>-->
+            <!--<p>根据资料显示，滴滴小巴是滴滴的首个区域内短途出行产品，主要瞄准的是周边有地铁但距离地铁较远的地区，其运营的片区中汇集了大量公司，百度、联想、中关村软件园等都居于其中。主要解决的是用户的短途出行需求，例如从地铁、超市到小区，从地铁到公司等。</p>-->
+            <!--<p>滴滴内部人士表示，目前滴滴小巴的车辆多为5-7座的商务车，车辆则是由汽车租赁公司提供，并非自营车辆。</p>-->
+        <!--</div>-->
+        <!--<div class="comment">-->
+            <!--<h2>文章点评</h2>-->
+            <!--<textarea class="writeComment">我有话要说......</textarea>-->
+            <!--<button id="submit" type="submit">提 交</button>-->
+            <!--<div class="recentComment">-->
+                <!--<p>最近评论</p>-->
+                <!--<div class="commentList">-->
+                    <!--<section>-->
+                        <!--<div class="writer">-->
+                            <!--<span class="name"><a href="personal-secondSide.html">吕一</a></span>-->
+                            <!--<span class="time">09:22</span>-->
+                            <!--<span class="like"><a href="javascript:;">54</a></span>-->
+                        <!--</div>-->
+                        <!--<p>添加一个打赏功能啊，文章报道的很好，很想打赏！</p>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<div class="writer">-->
+                            <!--<span class="name"><a href="personal-secondSide.html">吕一</a></span>-->
+                            <!--<span class="time">09:22</span>-->
+                            <!--<span class="like"><a href="javascript:;">54</a></span>-->
+                        <!--</div>-->
+                        <!--<p>添加一个打赏功能啊，文章报道的很好，很想打赏！</p>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<div class="writer">-->
+                            <!--<span class="name"><a href="personal-secondSide.html">吕一</a></span>-->
+                            <!--<span class="time">09:22</span>-->
+                            <!--<span class="like"><a href="javascript:;">54</a></span>-->
+                        <!--</div>-->
+                        <!--<p>添加一个打赏功能啊，文章报道的很好，很想打赏！</p>-->
+                    <!--</section>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="footer">
+        <div class="info">Copyright © 2017 apis.sh All Rights Reserved | 陕ICP备15013925号-3</div>
+    </div>
+</div>
+<script src="./javascripts/jquery-1.11.3.min.js"></script>
+<script src="./javascripts/utils.js"></script>
+<script charset="UTF-8" src="javascripts/ejs.min.js"></script>
+<script charset="UTF-8" type="text/template" id="template">
+    <%$.each(data,function(index,comments){%>
+    <section>
+        <div class="writer">
+            <span class="name"><a href="personal-secondSide.html"><%=comments.name%></a></span>
+            <span class="time"><%=comments.time%></span>
+            <span class="like"><a href="javascript:;"><%=comments.like%></a></span>
+        </div>
+        <p><%=comments.body%></p>
+    </section>
+    <%})%>
+</script>
+<script>
+//    //分享
+//    $(".content").on("click",".share",function (e) {
+//        var share=document.getElementsByClassName("share")[0],
+//            shareImg=document.getElementsByClassName("shareImg")[0],
+//            QRcode=document.getElementsByClassName("QRcode")[0];
+//        //兼容
+//        e=e||window.event;
+//        e.stopPropagation();
+//        var flag=!!e.target;
+//        if(!flag){
+//            e.target=e.srcElement;
+//            e.stopPropagation=function () {
+//                e.cancelBubble=true;
+//            }
+//        }
+//        //悬停显示隐藏
+//        var isBlock=utils.css(QRcode,"display")!=="block";//none
+//        if(e.target===share){
+//            if(!isBlock){
+//                utils.css(QRcode,{display:"none"});
+//            }else {
+//                utils.css(QRcode,{display:"block"});
+//            }
+//        }else {
+//            utils.css(QRcode,{display:"none"});
+//        }
+//    });
+
+    function zero(value) {
+        return value<10?"0"+value:value;
+    }
+    Date.prototype.getCreateTime=function () {
+        return zero(this.getHours())+":"+zero(this.getMinutes())
+    };
+
+    //绑定数据
+//    function bindEvent() {
+//        var $like=$(".like a");
+//        //获取本地存储的信息，判断是否有赞
+//        var support=localStorage.getItem('support');
+//        if(support){
+//            support=JSON.parse(support);
+//            if(support.isTap){
+//                $like.attr('isTap',true);
+//                $like.addClass('bg');
+//            }
+//        }
+//
+//        $like.on("click",function(){
+//            if($(this).attr('isTap')==='true')return;
+//            //结果发送至服务器
+////                $.ajax({
+////                    url:'http://matchweb.sports.qq.com/kbs/teamSupport?mid=100000%3A1470751&type='+$like.attr('type'),//改参数
+////                    dataType:'jsonp'
+////                });
+//            //只能点击一次
+//            $(this).attr('isTap',true);
+//            $(this).html(parseFloat($(this).html())+1).addClass('bg');
+//            localStorage.setItem('support',JSON.stringify({'isTap':true}));//改参数
+//        })
+//    }
+
+
+    function bindHTML(con) {
+        console.log(con);
+
+//        obj["avatar"]=con["author"]["avatar"].replace("avatar","https://dev.apis.sh/PW7yo9FpO/static/avatar");
+
+//        obj["pic"]=con["pic"].replace("pic","https://dev.apis.sh/PW7yo9FpO/static/pic");
+
+        var content=document.getElementsByClassName("content")[0];
+        var str='';
+        str+='<div>';
+        str+='<h2 class="'+con._id+'">'+con.title+'</h2>';
+        str+='<img class="shareImg" src="images/icon_share.png">';
+        str+='<div class="share">';
+        str+='分享';
+        str+='<div class="QRcode">';
+        str+='<p>使用微信扫一扫</p>';
+        str+='<img src="images/QRcode.png">';
+        str+='</div></div></div>';
+        str+='<div class="writer">';
+        str+='<img src="'+con.author.avatar.replace("avatar","https://dev.apis.sh/PW7yo9FpO/static/avatar")+'">';
+        str+='<span class="nameUp"><a href="personal-secondSide.html">'+con.author.name+'</a></span>';
+        str+='<span class="timeUp">'+new Date(con.create_time).getCreateTime()+'</span>';
+        str+='<span class="likeUp"><a href="javascript:;">'+con.praise_sum+'</a></span>';
+        str+='<span class="read">'+con.look_sum+'</span>';
+        str+='</div>';
+        str+='<div class="pic">';
+        str+='<img src="'+con.pic.replace("pic","https://dev.apis.sh/PW7yo9FpO/static/pic")+'">';
+        str+='</div>';
+        str+='<div class="article">';
+        str+=con.body;
+        str+='</div>';
+        str+='<div class="comment">';
+        str+='<h2>文章点评</h2>';
+        str+='<textarea class="writeComment">我有话要说......</textarea>';
+        str+='<button id="submit" type="submit">提 交</button>';
+        str+='<div class="recentComment">';
+        str+='<p>最近评论</p>';
+        str+='<div class="commentList">';
+        str+='</div></div></div>';
+        content.innerHTML+=str;
+
+//        bindEvent();
+    }
+
+
+    bindHTML(JSON.parse(localStorage.getItem("article"))["data"]["article"]);
+
+
+    //发表评论
+    $(".content").on("click","#submit",function () {
+        $.ajax({
+            url:"https://dev.apis.sh/PW7yo9FpO/comment/add",
+            type:"POST",
+            xhrFields:{withCredentials: true},
+            data:{
+                token:JSON.parse(localStorage.getItem("userData"))["token"],
+                body:$(".writeComment").val(),
+                article:$("h2").attr("class")
+            },
+            success:function (msg) {
+                if(msg && msg.code==="SUCCESS"){
+                    console.log(1)
+                    console.log(msg);
+                    alert(msg.message);
+                }else {
+                    console.log(msg)
+                    alert(msg.message)
+                }
+            }
+        })
+    });
+
+    //评论列表
+    var comment=(function () {
+//        var $like=$(".like a");
+//        function bindEvent() {
+//            //获取本地存储的信息，判断是否有赞
+//            var support=localStorage.getItem('support');
+//            if(support){
+//                support=JSON.parse(support);
+//                if(support.isTap){
+//                    $like.attr('isTap',true);
+//                    $like.addClass('clicked');
+//                }
+//            }
+//
+//            $(".like a").on("click",function(){
+//                //结果发送至服务器
+////                $.ajax({
+////                    url:'http://matchweb.sports.qq.com/kbs/teamSupport?mid=100000%3A1470751&type='+$like.attr('type'),//改参数
+////                    dataType:'jsonp'
+////                });
+//                //只能点击一次
+//                $like.attr('isTap',true);
+//                $(this).html(parseFloat($(this).html())+1).addClass('clicked');
+//                localStorage.setItem('support',JSON.stringify({'isTap':true}));//改参数
+//            })
+//        }
+
+        function bindHTML(data) {
+            $(".commentList").html(ejs.render($("#template").html(),{data:data}));
+//            bindEvent();
+        }
+        function zero(value) {
+            return value<10?"0"+value:value;
+        }
+        Date.prototype.getCreateTime=function () {
+            return zero(this.getHours())+":"+zero(this.getMinutes())
+        };
+        return{
+            init:function () {
+                $.ajax({
+                    url:"https://dev.apis.sh/PW7yo9FpO/comment/list?page="+localStorage.getItem("page")+"&limit=5&article="+$("h2").attr("class"),
+                    type:"get",
+                    jsonp:"callback",
+                    xhrFields:{withCredentials: true},
+                    cache:false,
+                    success:function (msg) {
+                        if(msg && msg.code==="SUCCESS"){
+                            console.log(msg);
+                            if(msg["data"]["comments"].length===0)return;
+                            var time=new Date(msg["data"]["comments"]["create_time"]),
+                                obj={};
+                            obj.name=msg["data"]["comments"]["author"]["name"];
+                            obj.time=time.getCreateTime();
+                            obj.like=msg["data"]["comments"]["praise_sum"];
+                            obj.body=msg["data"]["comments"]["body"];
+                            bindHTML(obj);
+                        }
+                    }
+                })
+            }
+        }
+    })();
+    comment.init();
+
+//分享
+$("body").on("click",function (e) {
+    var share=document.getElementsByClassName("share")[0],
+        QRcode=document.getElementsByClassName("QRcode")[0];
+    //兼容
+    e=e||window.event;
+    e.stopPropagation();
+    console.log(e.target)
+    var flag=!!e.target;
+    if(!flag){
+        e.target=e.srcElement;
+        e.stopPropagation=function () {
+            e.cancelBubble=true;
+        }
+    }
+    //悬停显示隐藏
+    var isBlock=utils.css(QRcode,"display")!=="block";//none-true
+    if(e.target===share){
+        if(!isBlock){
+            utils.css(QRcode,{display:"none"});
+        }else {
+            utils.css(QRcode,{display:"block"});
+        }
+    }else {
+//        if(!isBlock){
+//            utils.css(QRcode,{display:"none"});
+//        }
+        utils.css(QRcode,{display:"none"});
+    }
+    if(e.target!==share){
+        utils.css(QRcode,{display:"none"});
+    }
+});
+
+</script>
+</body>
+</html>
